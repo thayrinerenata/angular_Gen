@@ -2,8 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import { Observable } from "rxjs";
 import { observableToBeFn } from "rxjs/internal/testing/TestScheduler";
-import { usuarioLogin } from "/model/usuarioLogin"
-import { usuario } from "/model/usuario"
+import { Usuario } from "src/app/model/usuario";
 
 @Injectable({
   providedIn:"root"
@@ -13,13 +12,13 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  entrar(usuarioLogin: usuarioLogin): Observable<usuarioLogin> {
-    return this.http.post<usuarioLogin>("http://localhost:8080/usuarios/logar", usuarioLogin)
+  entrar(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>("http://localhost:8080/usuarios/logar", usuario)
 
   }
 
-  cadastrar(usuario: usuario): Observable<usuario>{
-    return this.http.post<usuario>("http://localhost:8080/usuarios/cadastrar", usuario)
+  cadastrar(usuario: Usuario): Observable<Usuario>{
+    return this.http.post<Usuario>("http://localhost:8080/usuarios/cadastrar", usuario)
 
   }
 }
