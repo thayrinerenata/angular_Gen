@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/service/AuthService';
 import { Usuario } from '../model/usuario';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -24,20 +24,20 @@ export class CadastrarComponent implements OnInit {
   }
 
   confirmSenha(event:any) {
-    this.confirmarSenha = event.targe.value
+    this.confirmarSenha = event.target.value
   }
 
   tipoUser(event:any) {
-    this.tipoUsuario = event.targe.value
+    this.tipoUsuario = event.target.value
   }
 
   cadastrar() {
-    this.user.tipo = this.tipoUsuario
-    if(this.user.senha != this.confirmarSenha) {
+    this.usuario.tipo = this.tipoUsuario
+    if(this.usuario.senha != this.confirmarSenha) {
       alert("As senhas não são iguais!")
     } else {
-      this.authService.cadastrar(this.user).subscribe((resp: User) => {
-        this.user = resp
+      this.authService.cadastrar(this.usuario).subscribe((resp: Usuario) => {
+        this.usuario = resp
         this.router.navigate(["/entrar"])
         alert("Usuário cadastrado com sucesso!")
       })
